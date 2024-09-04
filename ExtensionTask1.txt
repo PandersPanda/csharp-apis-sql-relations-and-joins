@@ -73,3 +73,35 @@ ADD FOREIGN KEY (peopleid) REFERENCES people(peopleid);
 	WHERE movies.score >= 8;
 
 
+	Extras:
+	
+	#Show movies and directors with the genres drama and science fiction
+
+	SELECT movies.title, p_dir.name as director_name, movies.genre
+	FROM movies
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people p_dir ON directors.peopleid = p_dir.peopleid
+	WHERE movies.genre IN ('Drama', 'Science Fiction');
+
+	#Show movies and their directors with a movie score of 8 or more
+
+	SELECT movies.title, people.name as director_name, movies.score
+	FROM movies
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people ON directors.peopleid = people.peopleid
+	WHERE movies.score >= 8
+	AND movies.title LIKE '%a%';
+
+	# Show the director's average movie scores
+
+	SELECT people.name as director_name, AVG(movies.score)
+	FROM movies
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people ON directors.peopleid = people.peopleid
+	GROUP BY people.name;
+
+	# Show the avarage movie score of each country
+	No change
+
+	# Show the avarage movie score of each genre
+	No change

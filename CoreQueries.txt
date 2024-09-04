@@ -75,27 +75,36 @@ Inserted the values, that is a lot of commands, I am going to spare everyones ti
 
    6. Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables.
 
+    #Show movies and directors with the genres drama and science fiction
+
     SELECT movies.title, directors.name as director_name, movies.genre
 	FROM movies
 	INNER JOIN directors ON movies.directorid = directors.directorid
 	WHERE movies.genre IN ('Drama', 'Science Fiction');
    
+   #Show movies and their directors with a movie score of 8 or more
+
     SELECT movies.title, directors.name as director_name, movies.score
 	FROM movies
 	INNER JOIN directors ON movies.directorid = directors.directorid
 	WHERE movies.score >= 8
 	AND movies.title LIKE '%a%';
 
+	# Show the diretor's average movie scores
+
 	SELECT directors.name as director_name, AVG(movies.score)
 	FROM movies
 	INNER JOIN directors ON movies.directorid = directors.directorid
 	GROUP BY directors.name;
+
+	# Show the avarage movie score of each country
 
 	SELECT directors.country, AVG(movies.score)
 	FROM movies
 	INNER JOIN directors ON movies.directorid = directors.directorid
 	GROUP BY directors.country;
 
+	# Show the avarage movie score of each genre
 	SELECT movies.genre, AVG(movies.score), Count(movies.genre)
 	FROM movies
 	GROUP BY movies.genre;
