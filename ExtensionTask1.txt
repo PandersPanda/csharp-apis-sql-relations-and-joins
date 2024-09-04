@@ -14,7 +14,62 @@ VALUES
 ('Arthur C Clarke'), ('Harper Lee'),('Boris Pasternak'), ('Frederick Frank'), ('Erik Hazelhoff Roelfzema'), ('Edmond Rostand')
 );
 
-Did the next steps for all tables 
+Did the next steps for tables stars, writers and directors
+
+ALTER TABLE directors
+ADD peopleID INT;
+
+UPDATE "public"."directors" SET "peopleid" = 1 WHERE "directorid" = 1;
+UPDATE "public"."directors" SET "peopleid" = 2 WHERE "directorid" = 2;
+UPDATE "public"."directors" SET "peopleid" = 3 WHERE "directorid" = 3;
+UPDATE "public"."directors" SET "peopleid" = 4 WHERE "directorid" = 4;
+UPDATE "public"."directors" SET "peopleid" = 5 WHERE "directorid" = 5;
+UPDATE "public"."directors" SET "peopleid" = 6 WHERE "directorid" = 6;
+UPDATE "public"."directors" SET "peopleid" = 7 WHERE "directorid" = 7;
+UPDATE "public"."directors" SET "peopleid" = 8 WHERE "directorid" = 8;
+UPDATE "public"."directors" SET "peopleid" = 9 WHERE "directorid" = 9;
+UPDATE "public"."directors" SET "peopleid" = 10 WHERE "directorid" = 10; ---This will vary from table to table ofc
+
+Alter TABLE directors
+DROP COLUMN name;
+
+ALTER TABLE directors
+ADD FOREIGN KEY (peopleid) REFERENCES people(peopleid);
 
 2. Where necessary refactor the queries to take advantage of this new structure
+
+	1. Show the title and director name for all films
+
+	SELECT movies.title, people.name as director_name
+	FROM movies
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people ON people.peopleid = directors.peopleid
+
+	 2. Show the title, director and star name for all films
+	
+	SELECT movies.title, p_directors.name as director_name, p_stars.name as star_name
+	FROM movies 
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people p_directors ON p_directors.peopleid = directors.peopleid
+	INNER JOIN stars ON movies.starid = stars.starid
+	INNER JOIN people p_stars ON p_stars.peopleid = stars.peopleid;
+
+	3. No change
+
+	4. Show only those films where the writer and the director are the same person
+
+	SELECT movies.title
+	FROM movies
+	INNER JOIN writers ON movies.writerid = writers.writerid
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	WHERE writers.peopleid = directors.peopleid;
+
+	5. Show directors and film titles for films with a score of 8 or higher
+
+	SELECT movies.title, people.name as director_name, movies.score
+	FROM movies
+	INNER JOIN directors ON movies.directorid = directors.directorid
+	INNER JOIN people ON directors.peopleid = people.peopleid
+	WHERE movies.score >= 8;
+
 
