@@ -1,3 +1,41 @@
+4. 
+
+CREATE TABLE directors (
+    directorid SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    country VARCHAR(255)
+);
+
+CREATE TABLE stars (
+    starid SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    dob DATE
+);
+
+CREATE TABLE writers (
+    writerid SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255)
+);
+
+CREATE TABLE movies (
+    movieid SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    year INT,
+    genre VARCHAR(255),
+    score INT,
+    directorid INT,
+    starid INT,
+    writerid INT,
+    FOREIGN KEY (directorid) REFERENCES directors(directorid),
+    FOREIGN KEY (starid) REFERENCES stars(starid),
+    FOREIGN KEY (writerid) REFERENCES writers(writerid)
+);
+
+5. 
+
+Inserted the values, that is a lot of commands, I am going to spare everyones time.
+
 6. Once you have the tables and data set up then you need to create queries to return the data needed as shown below:
 
    1. Show the title and director name for all films

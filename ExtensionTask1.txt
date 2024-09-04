@@ -1,0 +1,20 @@
+## Extension Task 1
+
+1. Refactor the database tables so that the Actors, Directors and Writers all identify people (using a Foreign Key) that are present in a single People table
+
+CREATE TABLE People(
+	peopleID SERIAL PRIMARY KEY,
+	name varchar(255)
+);
+
+INSERT INTO people(name)(
+VALUES
+('Stanley Kubrick'),('George Lucas'),('Robert Mulligan'),('James Cameron'),('David Lean'),('Anthony Mann'),('Theodoros Angelopoulos'),('Paul Verhoeven'),('Krzysztof Kieslowski'),('Jean-Paul Rappeneau'),
+('Keir Dullea'), ('Mark Hamill'), ('Gregory Peck'). ('Leonardo DiCaprio'), ('Julie Christine'), ('Charlton Heston'), ('Manos Katrakis'), ('Rutger Hauer'), ('Juliette Binoche'), ('Gerard Depardieu'),
+('Arthur C Clarke'), ('Harper Lee'),('Boris Pasternak'), ('Frederick Frank'), ('Erik Hazelhoff Roelfzema'), ('Edmond Rostand')
+);
+
+Did the next steps for all tables 
+
+2. Where necessary refactor the queries to take advantage of this new structure
+

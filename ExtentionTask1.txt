@@ -1,5 +1,0 @@
-## Extension Task 1
-
-1. Refactor the database tables so that the Actors, Directors and Writers all identify people (using a Foreign Key) that are present in a single People table
-2. Where necessary refactor the queries to take advantage of this new structure
-
